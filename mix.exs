@@ -1,4 +1,4 @@
-defmodule TENTARRO.Mixfile do
+defmodule Tentarro.Mixfile do
   use Mix.Project
 
   def project do
@@ -7,6 +7,7 @@ defmodule TENTARRO.Mixfile do
       version: "0.1.0",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
+      escript: [main_module: Tentarro.CLI],
       deps: deps()
     ]
   end
@@ -22,7 +23,7 @@ defmodule TENTARRO.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:tentacat, "~> 0.5"}
+     {:tentacat, "~> 0.5"}
     ]
   end
 end

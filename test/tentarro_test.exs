@@ -1,8 +1,8 @@
-defmodule TENTARROTest do
+defmodule TentarroTest do
   use ExUnit.Case
-  doctest TENTARRO
+  doctest Tentarro
 
   test "greets the world" do
-    assert TENTARRO.hello() == :world
+    assert Tentarro.hello() == :world
   end
 end

@@ -1,9 +1,6 @@
-# TENTARRO
+# Tentarro
 
-Tentarro will perform some basic sanity check about a github repo.
-
-The first release will check on pinging authors from a github repo to remove already merged branches.
-
+tentarro make things on github.
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
