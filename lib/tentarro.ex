@@ -1,22 +1,40 @@
 defmodule Tentarro do
   @moduledoc """
-  Documentation for tentarro.
+  Tentarro main module
   """
 
   @doc """
   Tentarro main module
   """
 
-  def repo_exist(repo) do
-    IO.puts repo
+  defp read_netrc() do
+    # fixme: get the pwd cred from netrc.
+    home = (System.get_env("HOME"))
+    {:ok, body} = File.read "#{home}/.netrc"
+    ["MalloZup", 'MYPWD']
   end
-
+  
   def no_opt do
     IO.puts 'NO OPTION'
   end
+
+  def branches(repo) do 
+    listbranches('SUSE', 'spacewalk')
+  end
+
+  defp listbranches(owner, repo) do
+    conf = read_netrc() 
+    client = Tentacat.Client.new(%{user: Enum.fetch!(conf, 0), 
+                        password: Enum.fetch!(conf, 1 ) } )
+    IO.inspect Tentacat.Repositories.Branches.list owner, repo, client
+  end
+
 end
 
 defmodule Tentarro.CLI do
+  @moduledoc """
+  Tentarro command line client
+  """
   def main(args \\ []) do
     args
     |> parse_args
@@ -32,7 +50,6 @@ defmodule Tentarro.CLI do
   end
 
   defp response({opts, word}) do
-    if opts[:repo], do: Tentarro.repo_exist(word), else: Tentarro.no_opt
+    if opts[:repo], do: Tentarro.branches(word), else: Tentarro.no_opt
   end
 end
-
